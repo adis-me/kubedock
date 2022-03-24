@@ -1,4 +1,4 @@
-package com.joyrex2001.kubedock.examples;
+package com.joyrex2001.kubedock.examples.testcontainers;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
