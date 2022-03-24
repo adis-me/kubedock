@@ -16,6 +16,7 @@ import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.rnorth.ducttape.unreliables.Unreliables;
 import org.testcontainers.containers.KafkaContainer;
+import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.google.common.collect.ImmutableMap;
 import org.testcontainers.utility.DockerImageName;
@@ -29,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.slf4j.LoggerFactory.getLogger;
 
 @Testcontainers
 public class KafkaTest {
@@ -36,7 +38,8 @@ public class KafkaTest {
     @Test
     void testKafkaStartup() throws ExecutionException, InterruptedException, TimeoutException {
         final KafkaContainer KAFKA_CONTAINER = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.5.0"))
-                .withStartupAttempts(3);
+                .withStartupAttempts(3)
+                .withLogConsumer(new Slf4jLogConsumer(getLogger("kafka")));
 
         KAFKA_CONTAINER.start();
 
