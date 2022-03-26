@@ -46,6 +46,11 @@
     <appender-ref ref="file"/>
   </logger>
 
+  <logger name="kafka" additivity="false" level="DEBUG">
+    <appender-ref ref="stdout"/>
+    <appender-ref ref="file"/>
+  </logger>
+
   <logger name="nginx" additivity="false" level="${config.sut.log.level}">
     <appender-ref ref="stdout"/>
     <appender-ref ref="file"/>

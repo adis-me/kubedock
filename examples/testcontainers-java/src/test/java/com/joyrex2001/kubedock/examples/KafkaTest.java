@@ -37,8 +37,9 @@ public class KafkaTest {
 
     @Test
     void testKafkaStartup() throws ExecutionException, InterruptedException, TimeoutException {
-        final KafkaContainer KAFKA_CONTAINER = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.5.0"))
-                .withStartupAttempts(3);
+        final KafkaContainer KAFKA_CONTAINER = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.2.2"))
+                .withStartupAttempts(3)
+                .withLogConsumer(new Slf4jLogConsumer(getLogger("kafka")));
 
         KAFKA_CONTAINER.start();
 
